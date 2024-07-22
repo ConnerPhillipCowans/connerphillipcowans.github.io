@@ -114,8 +114,9 @@
         let seenJokes = new Set(); 
 
         async function fetchJokes() {
-            const url = `https://icanhazdadjoke.com/search?limit=${jokesCount}&page=${currentPage}`;
+            const url = 'https://icanhazdadjoke.com/search?page=' + currentPage;
             const options = {
+                method: 'GET',
                 headers: {
                     'Accept': 'application/json'
                 }
@@ -139,23 +140,17 @@
         }
 
         function displayJokes(jokesArray) {
-    let jokesHTML = '';
+            let jokesHTML = '';
 
-    jokesArray.forEach(joke => {
-        if (!seenJokes.has(joke.id)) { 
-            seenJokes.add(joke.id); 
-            jokesHTML += `
-                <li class="joke-item">
-                    <p>${joke.joke}</p>
-                    <button class="copy-btn" onclick="copyToClipboard('${joke.joke.replace(/'/g, "\\'")}')">Copy</button>
-                </li>
-            `;
+            jokesArray.forEach(currentJoke => {
+                if (!seenJokes.has(currentJoke.id)) { 
+                    seenJokes.add(currentJoke.id); 
+                    jokesHTML += '<li class="joke-item"><p>' + currentJoke.joke + '</p><button class="copy-btn" onclick="copyToClipboard(\'' + currentJoke.joke + '\')">Copy</button></li>';
+                }
+            });
+
+            jokeList.innerHTML += jokesHTML; 
         }
-    });
-
-    jokeList.innerHTML += jokesHTML; 
-}
-
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {

@@ -12,29 +12,16 @@
         }
 
         function displaySubmission(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-           
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var joke = document.getElementById('joke').value;
-            var hasGif = document.getElementById('hasGif').checked;
-            var gifFile = document.getElementById('gif').files[0];
 
-           
-            var gifDisplay;
-            if (hasGif) {
-                gifDisplay = "<p><strong>GIF Attached:</strong> " + (gifFile ? gifFile.name : 'No GIF Attached') + "</p>";
-            } else {
-                gifDisplay = "<p>No GIF Attached</p>";
-            }
-
-            
             var displayContent = "<h2>Submission Details:</h2>" +
                                  "<p><strong>Name:</strong> " + name + "</p>" +
                                  "<p><strong>Email Address:</strong> " + email + "</p>" +
-                                 "<p><strong>Joke:</strong> " + joke + "</p>" +
-                                 gifDisplay;
+                                 "<p><strong>Joke:</strong> " + joke + "</p>";
 
             document.getElementById('submissionDisplay').innerHTML = displayContent;
 
@@ -103,14 +90,7 @@
                 <label for="joke" class="form-label">What is the joke?</label>
                 <textarea class="form-control" id="joke" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-                <label for="hasGif" class="form-check-label">Is there a GIF with this joke?</label>
-                <input type="checkbox" class="form-check-input" id="hasGif" onchange="document.getElementById('gifSection').style.display = this.checked ? 'block' : 'none';">
-            </div>
-            <div class="mb-3 gif-section" id="gifSection">
-                <label for="gif" class="form-label">Please attach a GIF</label>
-                <input type="file" class="form-control" id="gif" accept="image/gif">
-            </div>
+            
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 

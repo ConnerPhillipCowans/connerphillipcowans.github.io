@@ -136,12 +136,7 @@
                     } else {
                         let jokesHTML = ''; 
                         data.results.forEach(joke => {
-                            jokesHTML += `
-                                <div class="joke card p-3 mb-3">
-                                    <p>${joke.joke}</p>
-                                    <button class="copy-btn" onclick="myFunction('${joke.joke.replace(/'/g, "\\'")}')">Copy</button>
-                                </div>
-                            `;
+                            jokesHTML += '<div class="joke card p-3 mb-3"><p>' + joke.joke + '</p><button class="copy-btn" onclick="myFunction(\'' + joke.joke + '\')">Copy</button></div>';
                         });
                         jokesDiv.innerHTML = jokesHTML; 
                     }
@@ -152,7 +147,7 @@
                 });
 
             return false; 
-        };
+            };
 
         function myFunction(text) {
             navigator.clipboard.writeText(text).then(() => {

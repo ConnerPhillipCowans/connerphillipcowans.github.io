@@ -118,7 +118,7 @@
         function copyJoke() {
             if (currentJoke) {
                 navigator.clipboard.writeText(currentJoke).then(() => {
-                    alert('Joke copied to clipboard!');
+                    alert('Joke is copied to clipboard!');
                 }).catch(err => {
                     console.error('Failed to copy joke:', err);
                 });
