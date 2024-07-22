@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url('https://as2.ftcdn.net/v2/jpg/04/32/61/29/1000_F_432612969_VCr4jhOMv0X8REX6Hlw8STV6idxnnRN8.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.90); 
+            z-index: -1; 
+        }
+        .header-image {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover;
+        }
+        .sub-image {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s; 
+        }
+        .flip-horizontal {
+            transform: scaleX(-1); 
+        }
+        header {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Dad Jokes</h1>
+    </header>
+
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://connerphillipcowans.github.io/Project_Index">Dad Jokes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/RandomDadJoke">Random Dad Joke</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SpecificDadJoke">Specific Dad Joke</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SearchDadJokes">Search for Dad Jokes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SubmitAJoke">Submit Your Joke</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   
+    <div class="container mt-4">
+        
+        <div class="row">
+            <div class="col-12">
+                <img src="https://media.licdn.com/dms/image/D4E12AQEcvYytcp7Vcw/article-cover_image-shrink_600_2000/0/1708888926115?e=2147483647&v=beta&t=v3s_zLCAvjHz2g8yn9fMEpBjaRGPzNNQBvMa_96lV7A" alt="Rectangular Image" class="header-image">
+            </div>
+        </div>
+        
+        
+        <div class="row mt-4">
+            <div class="col-3">
+                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Sub Image 1" class="sub-image">
+            </div>
+            <div class="col-6 text-center">
+                <h3>Thank you for visiting the page where dads come get their jokes. Ever wonder why dads always have dad jokes ready to go? They probably came here. Or if you never had a dad and want to have the experience of being told dad jokes, you are in the right place. Because remember, a dad could be what's missing in your life!</h3>
+            </div>
+            <div class="col-3">
+                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Sub Image 2" class="sub-image flip-horizontal">
+            </div>
+        </div>
+
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <img src="https://www.tshirthell.com/shirts/products/a1394/a1394.gif" alt="Final Image" class="header-image">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

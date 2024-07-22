@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes - Random Joke</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url('https://as2.ftcdn.net/v2/jpg/04/32/61/29/1000_F_432612969_VCr4jhOMv0X8REX6Hlw8STV6idxnnRN8.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.80); 
+            z-index: -1; 
+        }
+        .joke-container {
+            margin-top: 20px;
+            text-align: center;
+            background-color: white;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .joke-text {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .copy-btn {
+            background-color: #dc3545; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #c82333; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body onload="fetchJoke()">
+
+    <div class="overlay"></div>
+
+   
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Dad Jokes</h1>
+    </header>
+
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="https://connerphillipcowans.github.io/Project_Index">Dad Jokes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/RandomDadJoke">Random Dad Joke</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SpecificDadJoke">Specific Dad Joke</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SearchDadJokes">Search for Dad Jokes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://connerphillipcowans.github.io/SubmitAJoke">Submit Your Joke</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   
+    <div class="container mt-4 joke-container">
+        <div id="jokeText" class="joke-text">Loading joke...</div>
+        <button onclick="fetchJoke()" class="btn btn-primary">Another Dad Joke</button>
+        <button onclick="copyJoke()" class="copy-btn">Copy</button>
+    </div>
+
+    <script>
+        let currentJoke = ''; 
+
+        async function fetchJoke() {
+            const url = 'https://icanhazdadjoke.com/';
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            };
+            
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                currentJoke = data.joke; 
+                document.getElementById('jokeText').textContent = currentJoke;
+            } catch (error) {
+                document.getElementById('jokeText').textContent = 'Oops! Something went wrong.';
+            }
+        }
+
+        function copyJoke() {
+            if (currentJoke) {
+                navigator.clipboard.writeText(currentJoke).then(() => {
+                    alert('Joke copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy joke:', err);
+                });
+            } else {
+                alert('No joke to copy!');
+            }
+        }
+    </script>
+
+</body>
+</html>
