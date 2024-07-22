@@ -73,8 +73,12 @@
     <div class="overlay"></div>
 
     
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Dad Jokes</h1>
+    <header class="bg-warning text-white text-center py-3">
+        <div class="header-container">
+            <span class="small-text">DAD JOKES</span>
+            <h1><span style="font-size: smaller; color: black;">DAD JOKES</span> DAD JOKES <span style="font-size: smaller; color: black;">DAD JOKES</span></h1>
+            <span class="small-text">DAD JOKES</span>
+        </div>
     </header>
 
     
@@ -143,7 +147,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching jokes:', error);
-                    jokesDiv.innerHTML = '<p>There was an error fetching jokes. Please try again later.</p>';
+                    jokesDiv.innerHTML = '<p>There was an error. Please try again later.</p>';
                 });
 
             return false; 
@@ -152,10 +156,17 @@
         function myFunction(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Joke copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy joke:', err);
+            }).catch(error => {
+                console.error('Failed to copy joke:', error);
             });
         }
     </script>
+
+<hr>
+<footer class="text-center">
+    <p>July 22, 2024 &bull; Conner Phillip Cowans</p>
+</footer>
+
+
 </body>
 </html>

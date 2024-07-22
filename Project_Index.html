@@ -9,9 +9,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+        <script>
+            function getGreeting() {
+                const date = new Date();
+                const hour = date.getHours();
+    
+                if (hour < 12) {
+                    return 'Good morning! Welcome to Dad Jokes.';
+                } else if (hour < 18) {
+                    return 'Good afternoon! Welcome to Dad Jokes.';
+                } else {
+                    return 'Good evening! Welcome to Dad Jokes.';
+                }
+            }
+    
+            window.onload = function() {
+                document.getElementById('greeting').textContent = getGreeting();
+            }
+        </script>
     <style>
         body {
-            background: url('https://as2.ftcdn.net/v2/jpg/04/32/61/29/1000_F_432612969_VCr4jhOMv0X8REX6Hlw8STV6idxnnRN8.jpg') no-repeat center center fixed;
+            background: url('https://as2.ftcdn.net/v2/jpg/04/32/61/29/1000_F_432612969_VCr4jhOMv0X8REX6Hlw8STV6idxnnRN8.jpg');
             background-size: cover;
         }
         .overlay {
@@ -28,7 +46,7 @@
             height: 200px; 
             object-fit: cover;
         }
-        .sub-image {
+        .small-image {
             width: 100%;
             height: auto;
             transition: transform 0.3s; 
@@ -36,7 +54,9 @@
         .flip-horizontal {
             transform: scaleX(-1); 
         }
-
+        header {
+            font-family: 'Times New Roman', Times, serif;
+        }
     </style>
 </head>
 <body>
@@ -44,8 +64,12 @@
     <div class="overlay"></div>
 
     
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Dad Jokes</h1>
+    <header class="bg-warning text-white text-center py-3">
+        <div class="header-container">
+            <span class="small-text">DAD JOKES</span>
+            <h1><span style="font-size: smaller; color: black;">DAD JOKES</span> DAD JOKES <span style="font-size: smaller; color: black;">DAD JOKES</span></h1>
+            <span class="small-text">DAD JOKES</span>
+        </div>
     </header>
 
  
@@ -84,13 +108,15 @@
         
         <div class="row mt-4">
             <div class="col-3">
-                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Image 1" class="sub-image">
+                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Image 1" class="small-image">
             </div>
             <div class="col-6 text-center">
-                <h3>Thank you for visiting the page where dads come get their jokes. Ever wonder why dads always have dad jokes ready to go? They probably came here. Or if you never had a dad and want to have the experience of being told dad jokes, you are in the right place. Because remember, a dad could be what's missing in your life!</h3>
+                <h2 id="greeting"></h2>
+                
+                <h2>Thank you for visiting the page where dads come get their jokes. Ever wonder why dads always have dad jokes ready to go? They probably came here. Or if you never had a dad and want to have the experience of being told dad jokes, you are in the right place. Because remember, a dad could be what's missing in your life!</h2>
             </div>
             <div class="col-3">
-                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Image 2" class="sub-image flip-horizontal">
+                <img src="https://media.tenor.com/7A_RL8BciUMAAAAi/better-laughing-pepe-pepe.gif" alt="Image 2" class="small-image flip-horizontal">
             </div>
         </div>
 
@@ -101,6 +127,11 @@
             </div>
         </div>
     </div>
+
+    <hr>
+    <footer class="text-center">
+        <p>July 22, 2024 &bull; Conner Phillip Cowans</p>
+    </footer>
 
 </body>
 </html>
