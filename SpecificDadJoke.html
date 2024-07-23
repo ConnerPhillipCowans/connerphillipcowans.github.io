@@ -126,7 +126,7 @@
                 return;
             }
 
-            allJokes = [...allJokes, ...myObj.results];
+            allJokes = allJokes.concat(myObj.results);
             allJokes.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
 
             let sortedJokes = [];
