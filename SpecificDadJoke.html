@@ -61,11 +61,10 @@
         }
     </style>
 </head>
-<body onload="fetchJokes()">
+<body onload="myFunc()">
 
     <div class="overlay"></div>
 
-    
     <header class="bg-warning text-white text-center py-3">
         <div class="header-container">
             <span class="small-text">DAD JOKES</span>
@@ -74,7 +73,6 @@
         </div>
     </header>
 
-   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="https://connerphillipcowans.github.io/Project_Index">Dad Jokes</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,77 +96,74 @@
         </div>
     </nav>
 
-    
     <div class="container mt-4 joke-container">
-        
         <div class="joke-list">
             <h3>All Dad Jokes</h3>
-            <ul id="jokeList" class="list-unstyled">
-               
-            </ul>
+            <ul id="jokeList" class="list"></ul>
         </div>
-        <button id="loadMore" class="btn btn-primary mt-3" onclick="fetchJokes()">Load More Jokes</button>
+        <button id="loadMore" class="btn btn-primary mt-3" onclick="myFunc()">Load More Jokes</button>
     </div>
 
     <script>
-        const jokeList = document.getElementById('jokeList');
-        const jokesCount = 5;
-        let currentPage = 1; 
-        let totalPages = 1; 
-        let seenJokes = new Set(); 
-
-        async function fetchJokes() {
-            const url = 'https://icanhazdadjoke.com/search?page=' + currentPage;
-            const options = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            };
-
-            try {
-                const response = await fetch(url, options);
-                const data = await response.json();
-                totalPages = Math.ceil(data.total_count / jokesCount);
-
-                if (data.results.length > 0) {
-                    displayJokes(data.results);
-                    currentPage++;
-                } else {
-                    document.getElementById('loadMore').disabled = true;
-                    document.getElementById('loadMore').textContent = 'No more jokes available';
-                }
-            } catch (error) {
-                document.getElementById('jokeList').textContent = 'Oops! Something went wrong.';
+        const url = "https://icanhazdadjoke.com/search";
+        const options = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
             }
+        };
+        let currentPage = 1;
+        let allJokes = [];
+        let seenJokes = new Set();
+
+        async function myFunc() {
+            const response = await fetch(url + '?page=' + currentPage, options);
+            const result = await response.text();
+            const myObj = JSON.parse(result);
+
+            if (myObj.results.length === 0) {
+                alert("Dad's have ran out of jokes... but we shall unite and win again");
+                return;
+            }
+
+            allJokes = [...allJokes, ...myObj.results];
+            allJokes.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
+
+            let sortedJokes = [];
+            allJokes.forEach((joke) => {
+                if (!seenJokes.has(joke.id)) {
+                    seenJokes.add(joke.id);
+                    sortedJokes.push(joke);
+                }
+            });
+
+            displayJokes(sortedJokes);
+            currentPage++;
         }
 
         function displayJokes(jokesArray) {
             let jokesHTML = '';
-
-            jokesArray.forEach(currentJoke => {
-                if (!seenJokes.has(currentJoke.id)) { 
-                    seenJokes.add(currentJoke.id); 
-                    jokesHTML += '<li class="joke-item"><p>' + currentJoke.joke + '</p><button class="copy-btn" onclick="copyToClipboard(\'' + currentJoke.joke + '\')">Copy</button></li>';
-                }
+            jokesArray.forEach((currentJoke, index) => {
+                jokesHTML += '<li class="joke-item"><p>' + ((currentPage - 1) * 20 + index + 1) + '. ' + currentJoke.joke + '</p><button class="copy-btn" onclick="copyToClipboard(\'' + currentJoke.joke + '\')">Copy</button></li>';
             });
-
-            jokeList.innerHTML += jokesHTML; 
+            document.getElementById('jokeList').innerHTML += jokesHTML;
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Joke copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy joke:', err);
+            }).catch(error => {
+                console.error('Failed to copy joke:', error);
             });
         }
+
+        window.onload = myFunc;
     </script>
 
-<hr>
-<footer class="text-center">
-    <p>July 22, 2024 &bull; Conner Phillip Cowans &bull; Final Project</p>
-</footer>
+    <hr>
+    <footer class="text-center">
+        <p>July 22, 2024 &bull; Conner Phillip Cowans &bull; Final Project</p>
+    </footer>
 
 </body>
 </html>
