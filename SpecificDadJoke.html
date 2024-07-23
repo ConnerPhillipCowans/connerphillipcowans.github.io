@@ -144,7 +144,7 @@
         function displayJokes(jokesArray) {
             let jokesHTML = '';
             jokesArray.forEach((currentJoke, index) => {
-                jokesHTML += '<li class="joke-item"><p>' + ((currentPage - 1) * 20 + index + 1) + '. ' + currentJoke.joke + '</p><button class="copy-btn" onclick="copyToClipboard(\'' + currentJoke.joke + '\')">Copy</button></li>';
+                jokesHTML += '<li class="joke-item"><p>' + ((currentPage - 1) * 20 + index + 1) + '. ' + currentJoke.joke + ' (ID: ' + currentJoke.id + ')</p><button class="copy-btn" onclick="copyToClipboard(\'' + currentJoke.joke + '\')">Copy</button></li>';
             });
             document.getElementById('jokeList').innerHTML += jokesHTML;
         }
